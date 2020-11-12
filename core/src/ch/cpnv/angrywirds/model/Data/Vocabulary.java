@@ -9,8 +9,8 @@ import ch.cpnv.angrywirds.AngryWirds;
  */
 
 public class Vocabulary {
-    String vocName;
-    ArrayList<SemanticWord> words;
+    private String vocName;
+    private ArrayList<SemanticWord> words;
 
     public Vocabulary(String vocName){
         this.vocName = vocName;
