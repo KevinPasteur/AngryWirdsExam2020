@@ -12,7 +12,7 @@ public class VocProvider {
     // static variable single_instance of type VocProvider
     private static VocProvider single_instance = null;
 
-    public ArrayList<Vocabulary> vocs; // all available vocs
+    private ArrayList<Vocabulary> vocs; // all available vocs
     private ArrayList<Language> languages;
 
     // private constructor restricted to this class itself
@@ -170,5 +170,9 @@ public class VocProvider {
     public Vocabulary pickAVoc()
     {
         return vocs.get(AngryWirds.alea.nextInt(vocs.size()));
+    }
+
+    public ArrayList<Language> getLanguages(){
+        return languages;
     }
 }
