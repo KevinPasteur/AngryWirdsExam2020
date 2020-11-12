@@ -5,8 +5,7 @@ import com.badlogic.gdx.Game;
 import java.util.Random;
 import java.util.Stack;
 
-import ch.cpnv.angrywirds.activities.Play;
-import ch.cpnv.angrywirds.activities.Welcome;
+import ch.cpnv.angrywirds.activities.MenuLanguage;
 
 public class AngryWirds extends Game {
 
@@ -18,7 +17,7 @@ public class AngryWirds extends Game {
     public void create() {
         alea = new Random();
         pages = new Stack<Game>();
-        pages.push(new Welcome());
+        pages.push(new MenuLanguage());
     }
 
     @Override

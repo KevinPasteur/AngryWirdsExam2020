@@ -1,5 +1,7 @@
 package ch.cpnv.angrywirds.model.Data;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.ArrayList;
 
 import ch.cpnv.angrywirds.AngryWirds;
@@ -9,19 +11,19 @@ import ch.cpnv.angrywirds.AngryWirds;
  */
 
 public class Vocabulary {
-    String vocName;
-    ArrayList<Word> words;
+    private String vocName;
+    private ArrayList<SemanticWord> words;
 
     public Vocabulary(String vocName){
         this.vocName = vocName;
-        this.words = new ArrayList<Word>();
+        this.words = new ArrayList<SemanticWord>();
     }
 
-    public void addWord(Word w) {
-        words.add(w);
+    public void addSemanticWord(SemanticWord semword) {
+        words.add(semword);
     }
 
-    public Word pickAWord() {
+    public SemanticWord pickAWord() {
         return words.get(AngryWirds.alea.nextInt(words.size()));
     } // TODO pick a non-allocated word
 }

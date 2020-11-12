@@ -14,8 +14,11 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 
+import javax.print.DocFlavor;
+
 import ch.cpnv.angrywirds.AngryWirds;
 import ch.cpnv.angrywirds.model.Bird;
+import ch.cpnv.angrywirds.model.Button;
 import ch.cpnv.angrywirds.model.Data.Vocabulary;
 import ch.cpnv.angrywirds.model.ObjectOutOfBoundsException;
 import ch.cpnv.angrywirds.model.Panel;
@@ -59,18 +62,20 @@ public class Play extends Game implements InputProcessor {
     private Texture slingshot2;
     private RubberBand rubberBand1;
     private RubberBand rubberBand2;
-    private BitmapFont scoreDisp;
+    private BitmapFont scoreDisp,langSelect;
+    private String lang1,lang2;
 
     private OrthographicCamera camera;
 
-    public Play()
+    public Play(String lang1, String lang2)
     {
+        this.lang1 = lang1;
+        this.lang2 = lang2;
         alea = new Random();
 
         tweety = new Bird(new Vector2(AIMING_ZONE_X-Bird.WIDTH, AIMING_ZONE_Y-Bird.HEIGHT), new Vector2(0, 0));
         waspy = new Wasp(new Vector2(WORLD_WIDTH / 2, WORLD_HEIGHT / 2), new Vector2(0, 0));
         voc = vocSource.pickAVoc();
-
         scene = new Scenery();
         //scene.addFloor();
         for (int i = 0; i < 150; i++) {
@@ -96,7 +101,7 @@ public class Play extends Game implements InputProcessor {
         int pigsLeft = 5;
         while (pigsLeft > 0) {
             try {
-                scene.dropElement(new Pig(new Vector2(alea.nextFloat() * WORLD_WIDTH, FLOOR_HEIGHT + BLOCK_SIZE), voc.pickAWord()));
+                scene.dropElement(new Pig(new Vector2(alea.nextFloat() * WORLD_WIDTH, FLOOR_HEIGHT + BLOCK_SIZE), voc.pickAWord(),lang2));
                 pigsLeft--;
             } catch (ObjectOutOfBoundsException e) {
                 Gdx.app.log("ANGRY", "Pig out of bounds: " + e.getMessage());
@@ -119,6 +124,10 @@ public class Play extends Game implements InputProcessor {
         scoreDisp= new BitmapFont();
         scoreDisp.setColor(Color.BLACK);
         scoreDisp.getData().setScale(2);
+
+        langSelect= new BitmapFont();
+        langSelect.setColor(Color.BLACK);
+        langSelect.getData().setScale(2);
 
         slingshot1 = new Texture(Gdx.files.internal("slingshot1.png"));
         slingshot2 = new Texture(Gdx.files.internal("slingshot2.png"));
@@ -145,7 +154,7 @@ public class Play extends Game implements InputProcessor {
                 PhysicalObject phob = scene.objectHitBy(tweety);
                 if (phob != null) {
                     if (phob instanceof Pig) {
-                        if (((Pig)phob).getWord() == panel.getWord()) {
+                        /*if (((Pig)phob).getWord() == panel.getWord()) {
                             scoreVal++;
                             scene.removeElement(phob);
                         } else {
@@ -153,7 +162,7 @@ public class Play extends Game implements InputProcessor {
                             if (scoreVal == 0) { // Game over
                                 AngryWirds.pages.push(new GameOver());
                             }
-                        }
+                        }*/
                     } else {
                         scene.removeElement(phob);
                     }
@@ -180,12 +189,13 @@ public class Play extends Game implements InputProcessor {
         batch.setProjectionMatrix(camera.combined);
         batch.draw(background, 0, 0, camera.viewportWidth, camera.viewportHeight);
         batch.draw(slingshot1, SLINGSHOT_OFFSET, FLOOR_HEIGHT, SLINGSHOT_WIDTH, SLINGSHOT_HEIGHT);
+        langSelect.draw(batch, "Pratique de "+lang1+" en "+lang2, WORLD_WIDTH/3, WORLD_HEIGHT-60);
         if (tweety.getState() == Bird.State.AIMING) rubberBand1.draw(batch);
         tweety.draw(batch);
         if (tweety.getState() == Bird.State.AIMING) rubberBand2.draw(batch);
         waspy.draw(batch);
         scene.draw(batch);
-        panel.draw(batch);
+        panel.draw(batch,lang1);
         batch.draw(slingshot2, SLINGSHOT_OFFSET, FLOOR_HEIGHT, SLINGSHOT_WIDTH, SLINGSHOT_HEIGHT);
         displayScore(batch);
         batch.end();
