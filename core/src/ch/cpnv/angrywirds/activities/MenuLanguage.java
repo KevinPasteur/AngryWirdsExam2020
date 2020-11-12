@@ -19,8 +19,11 @@ public class MenuLanguage extends Game implements InputProcessor {
 
     private SpriteBatch batch;
     private Texture background;
-    private BitmapFont title;
+    private BitmapFont title,subtitle;
     private Button button;
+    private String language1 = "(Choisir)";
+    private String language2 = "(Choisir)";
+    private Button btnFR,btnEN,btnES;
 
     private OrthographicCamera camera;
 
@@ -37,6 +40,10 @@ public class MenuLanguage extends Game implements InputProcessor {
         title= new BitmapFont();
         title.setColor(Color.ROYAL);
         title.getData().setScale(6);
+
+        subtitle= new BitmapFont();
+        subtitle.setColor(Color.ROYAL);
+        subtitle.getData().setScale(6);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -56,7 +63,8 @@ public class MenuLanguage extends Game implements InputProcessor {
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
         batch.draw(background, 0, 0, camera.viewportWidth, camera.viewportHeight);
-        title.draw(batch,"Hello",WORLD_WIDTH/2,WORLD_HEIGHT/2);
+        title.draw(batch,"AngryWirds",WORLD_WIDTH/2.5f,WORLD_HEIGHT/1.5f + 250);
+        subtitle.draw(batch,"Exercice de "+language1 + " en " +language2,WORLD_WIDTH/8,WORLD_HEIGHT/1.5f+150);
         batch.end();
     }
 
