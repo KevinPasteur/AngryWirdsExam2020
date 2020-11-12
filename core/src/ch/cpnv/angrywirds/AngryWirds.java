@@ -6,8 +6,6 @@ import java.util.Random;
 import java.util.Stack;
 
 import ch.cpnv.angrywirds.activities.MenuLanguage;
-import ch.cpnv.angrywirds.activities.Play;
-import ch.cpnv.angrywirds.activities.Welcome;
 
 public class AngryWirds extends Game {
 

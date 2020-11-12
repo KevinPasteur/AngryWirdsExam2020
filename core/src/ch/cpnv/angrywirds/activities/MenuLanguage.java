@@ -136,36 +136,35 @@ public class MenuLanguage extends Game implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if(btnEN1.isTouched(new Vector2(screenX,screenY)))
         {
-            language1 = "Anglais";
+            language1 = btnEN1.getValue();
             selected1 = true;
         }
         if(btnES1.isTouched(new Vector2(screenX,screenY)))
         {
-            language1 = "Espagnol";
+            language1 = btnES1.getValue();
             selected1 = true;
         }
         if(btnFR1.isTouched(new Vector2(screenX,screenY)))
         {
-            language1 = "Français";
+            language1 =btnFR1.getValue();
             selected1 = true;
         }
 
         if(btnEN2.isTouched(new Vector2(screenX,screenY))){
-            language2 = "Anglais";
+            language2 = btnEN2.getValue();
             selected2 = true;
         }
         if(btnES2.isTouched(new Vector2(screenX,screenY))){
-            language2 = "Espagnol";
+            language2 = btnES2.getValue();
             selected2 = true;
         }
         if(btnFR2.isTouched(new Vector2(screenX,screenY))){
-            language2 = "Français";
+            language2 = btnFR2.getValue();
             selected2 = true;
         }
 
         if(btnGO.isTouched(new Vector2(screenX,screenY)))
         {
-            Gdx.app.log("ANGRY", "Test du nouveau voc ");
             AngryWirds.pages.push(new Play(language1,language2));
         }
         //AngryWirds.pages.push(new Play());
