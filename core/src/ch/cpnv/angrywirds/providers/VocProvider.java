@@ -3,8 +3,9 @@ package ch.cpnv.angrywirds.providers;
 import java.util.ArrayList;
 
 import ch.cpnv.angrywirds.AngryWirds;
+import ch.cpnv.angrywirds.model.Data.Language;
 import ch.cpnv.angrywirds.model.Data.Vocabulary;
-import ch.cpnv.angrywirds.model.Data.Word;
+import ch.cpnv.angrywirds.model.Data.SemanticWord;
 
 public class VocProvider {
 
@@ -12,6 +13,7 @@ public class VocProvider {
     private static VocProvider single_instance = null;
 
     public ArrayList<Vocabulary> vocs; // all available vocs
+    private ArrayList<Language> languages;
 
     // private constructor restricted to this class itself
     private VocProvider()
