@@ -1,5 +1,7 @@
 package ch.cpnv.angrywirds.model.Data;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.ArrayList;
 
 import ch.cpnv.angrywirds.AngryWirds;
