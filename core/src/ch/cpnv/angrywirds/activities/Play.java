@@ -14,8 +14,11 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 
+import javax.print.DocFlavor;
+
 import ch.cpnv.angrywirds.AngryWirds;
 import ch.cpnv.angrywirds.model.Bird;
+import ch.cpnv.angrywirds.model.Button;
 import ch.cpnv.angrywirds.model.Data.Vocabulary;
 import ch.cpnv.angrywirds.model.ObjectOutOfBoundsException;
 import ch.cpnv.angrywirds.model.Panel;
@@ -63,14 +66,13 @@ public class Play extends Game implements InputProcessor {
 
     private OrthographicCamera camera;
 
-    public Play()
+    public Play(String lang1, String lang2)
     {
         alea = new Random();
 
         tweety = new Bird(new Vector2(AIMING_ZONE_X-Bird.WIDTH, AIMING_ZONE_Y-Bird.HEIGHT), new Vector2(0, 0));
         waspy = new Wasp(new Vector2(WORLD_WIDTH / 2, WORLD_HEIGHT / 2), new Vector2(0, 0));
         voc = vocSource.pickAVoc();
-
         scene = new Scenery();
         //scene.addFloor();
         for (int i = 0; i < 150; i++) {
@@ -96,7 +98,7 @@ public class Play extends Game implements InputProcessor {
         int pigsLeft = 5;
         while (pigsLeft > 0) {
             try {
-                scene.dropElement(new Pig(new Vector2(alea.nextFloat() * WORLD_WIDTH, FLOOR_HEIGHT + BLOCK_SIZE), voc.pickAWord()));
+                scene.dropElement(new Pig(new Vector2(alea.nextFloat() * WORLD_WIDTH, FLOOR_HEIGHT + BLOCK_SIZE), voc.pickAWord(),lang2.getValue()));
                 pigsLeft--;
             } catch (ObjectOutOfBoundsException e) {
                 Gdx.app.log("ANGRY", "Pig out of bounds: " + e.getMessage());
@@ -114,7 +116,7 @@ public class Play extends Game implements InputProcessor {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
 
-        panel = new Panel(scene.pickAWord());
+        //panel = new Panel(scene.pickAWord());
         scoreVal = 3; // allow a few mistakes before game over
         scoreDisp= new BitmapFont();
         scoreDisp.setColor(Color.BLACK);
@@ -185,7 +187,7 @@ public class Play extends Game implements InputProcessor {
         if (tweety.getState() == Bird.State.AIMING) rubberBand2.draw(batch);
         waspy.draw(batch);
         scene.draw(batch);
-        panel.draw(batch);
+        //panel.draw(batch);
         batch.draw(slingshot2, SLINGSHOT_OFFSET, FLOOR_HEIGHT, SLINGSHOT_WIDTH, SLINGSHOT_HEIGHT);
         displayScore(batch);
         batch.end();

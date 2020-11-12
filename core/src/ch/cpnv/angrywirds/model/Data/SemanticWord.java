@@ -22,6 +22,7 @@ public class SemanticWord {
             else throw new TranslationDoesNotExistsException(language);
 
         } catch (TranslationExistsException e) {
+
             return this.values.get(e.getMessage());
         }
         catch (TranslationDoesNotExistsException e) {

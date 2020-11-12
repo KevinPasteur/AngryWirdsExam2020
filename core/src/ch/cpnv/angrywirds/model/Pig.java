@@ -1,10 +1,9 @@
 package ch.cpnv.angrywirds.model;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
-import ch.cpnv.angrywirds.model.Data.Word;
+import ch.cpnv.angrywirds.model.Data.SemanticWord;
 
 /**
  * Created by Xavier on 06.05.18.
@@ -16,11 +15,11 @@ public final class Pig extends TextualObject {
     private static final int WIDTH = 60;
     public static final int HEIGHT = 60; // made public for the bubble placement
 
-    private Word word; // The word with both languages
+    private SemanticWord word; // The word with both languages
     private Bubble scream = null; // A bubble to show the pig's word to the player
 
-    public Pig(Vector2 position, Word word) {
-        super(position, WIDTH, HEIGHT, PICNAME, word.getValue1());
+    public Pig(Vector2 position, SemanticWord word,String lang) {
+        super(position, WIDTH, HEIGHT, PICNAME, word.getValue(lang));
         this.word = word;
     }
 
@@ -28,7 +27,7 @@ public final class Pig extends TextualObject {
         return super.getText();
     }
 
-    public Word getWord() {
+    public SemanticWord getWord() {
         return word;
     }
 
