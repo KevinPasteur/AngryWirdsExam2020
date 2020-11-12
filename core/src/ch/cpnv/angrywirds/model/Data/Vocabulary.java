@@ -17,7 +17,7 @@ public class Vocabulary {
         this.words = new ArrayList<SemanticWord>();
     }
 
-    public void addWord(SemanticWord semword) {
+    public void addSemanticWord(SemanticWord semword) {
         words.add(semword);
     }
 
