@@ -5,12 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 
-import ch.cpnv.angrywirds.AngryWirds;
 import ch.cpnv.angrywirds.activities.Play;
 import ch.cpnv.angrywirds.model.Data.SemanticWord;
-import ch.cpnv.angrywirds.model.Data.Word;
 
 public class Panel extends Sprite {
 
